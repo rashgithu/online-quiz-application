@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: url(../images/quiz.jpg);
+background-size: cover;
+color:#f0e9f0;
+font-family: 'Salsa', cursive;
+    }

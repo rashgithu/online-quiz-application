@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+    body{
+   font-family: 'Poppins', sans-serif;
+/*font-family: 'Salsa', cursive;*/
+background-image: url(../images/back.jpg);
+background-size: cover;
+color:#f0e9f0;
+    }
+.py-3 my-4 li{
+    color:white;
+}

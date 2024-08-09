@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudfare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#b1").click(function () {
+                $(".rb").show();
+                $(".rb").attr("disabled", true);
+
+
+            });
+        });
+        function getanswers() //
+        {
+            document.getElementById("UserAnswers").innerHTML = "";
+            var e = document.getElementsByTagName("input");
+            for (i = 0; i <= e.length; i++) {
+                if (e[i].type == "radio") {
+                    if (e[i].checked) {
+                        document.getElementById("UserAnswers").innerHTML += "Q " + e[i].name + " The Answers You are selected is:" + e[i].value + "<br>";
+                    }
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body><nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'webpage3' %}">The Cerebral Curcuits</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'webpage1' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'webpage1' %}">Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'webpage5' %}">Leaderboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Other
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Blog</a></li>
+                        <li><a class="dropdown-item" href="#">About</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Downloads</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <a href="{% url 'webpage2' %}" class="btn btn-primary ms-2">Login</a>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="container">
+        <h1 class="text-primary mt-3">The Cerebral Circuits</h1>
+        <hr>
+        <div>
+            {% for i in django %}
+            <table>
+                <tr>
+                    <td class="text-primary">{{i.id}} . {{i.Question}}</td>
+                    <!-- each i is  fecthing the id from the database and i is also fecthing the question from the question list-->
+                </tr>
+                <tr>
+                    <td> <input type="radio" class="rb" name={{i.id}} id=" option1" value="{{i.option1}}">{{i.option1}}
+                    </td>
+                </tr>
+                <tr>
+                    <td> <input type="radio" class="rb" name={{i.id}} id=" option2" value="{{i.option2}}">{{i.option2}}
+                    </td>
+                </tr>
+                <tr>
+                    <td> <input type="radio" class="rb" name={{i.id}} id=" option3" value="{{i.option3}}">{{i.option3}}
+                    </td>
+                </tr>
+                <tr>
+                    <td> <input type="radio" class="rb" name={{i.id}} id=" option4" value="{{i.option4}}">{{i.option4}}
+                    </td>
+                </tr>
+                <tr>
+                    <td> <label id="correct" class="rb" style="display:none; color:green;"><b>{{i.correct}}</b></label>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+            {% endfor %}
+            <input type="submit" class="btn btn-success" value="Submit" id="b1" onclick="getanswers()">
+            <br>
+            <b id="UserAnswers"></b>
+        </div>
+    </div>
+</body>
+</html>
